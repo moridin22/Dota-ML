@@ -56,7 +56,6 @@ class NeuralNetwork:
         """Train the network on the INPUTS dataset (should be a numpy array)."""
 
         assert biased(inputs), "Inputs need a bias column"
-        assert
         first_past_update = second_past_update = 0
         error_mod = num_loops // num_error_prints
         for j in range(num_loops):
