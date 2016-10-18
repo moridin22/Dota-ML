@@ -58,6 +58,13 @@ class NeuralNetwork:
         assert biased(inputs), "Inputs need a bias column"
         first_past_update = second_past_update = 0
         error_mod = num_loops // num_error_prints
+
+        # Batch implementation
+        total_inputs = pd.DataFrame(np.append(inputs, target, axis=1))
+        batch = np.array(total_inputs.sample(frac=.1))
+        inputs = batch[:, -1]
+        target = batch[:,-1:]
+
         for j in range(num_loops):
             self.run(inputs)
             self.error = target - self.second_layer_output
